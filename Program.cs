@@ -185,16 +185,18 @@ static int[,] GenerateNewMatrix(int[,] mtx) // Сгенерировать нов
     }
 
     int ii = 0;
+    int jj = 0;
     
     for (int i = 0; i < rows-1; i++)
     {
         
-        int jj = 0;
+        if ( i == m ) { ii++; }
+        
+        jj = 0;
 
         for (int j = 0; j < cols-1; j++)
         {
-            
-            if ( i == m ) { ii++; }
+               
             if ( j == n ) { jj++; }
 
             newMatrix[i, j] = mtx[ii, jj];
@@ -279,10 +281,12 @@ cols = ReadInt("> Введите количество столбцов в мат
 Array.Clear(matrix, 0, matrix.Length);
 matrix = GenerateMatrix(rows, cols, 0, 100);
 
+Console.WriteLine("> Исходная матрица.");
 ShowMatrix(matrix);
 
 int[,] newMatrix = GenerateNewMatrix(matrix);
 
+Console.WriteLine("> Новая матрица.");
 ShowMatrix(newMatrix);
 
 anyKey = ReadStr("\nРабота программы завершена. Для продолжения введите любой символ... ");
